@@ -1,6 +1,6 @@
-// src/components/ProductForm.tsx
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Product } from "../types/product";
+import styles from "./ProductForm.module.css";
 
 interface ProductFormProps {
   onSubmit: (product: Omit<Product, "id">) => Promise<void>;
@@ -27,25 +27,20 @@ export default function ProductForm({
     const { name, value } = e.target;
 
     setFormData((prev) => {
-      // Create a new object with the previous values
       const newData = { ...prev };
-
-      // Handle numeric fields differently
       if (name === "price") {
-        // Explicitly convert to number
         newData[name] = value === "" ? 0 : Number(value);
       } else {
-        // For non-numeric fields, keep as string
         newData[name as Exclude<keyof Omit<Product, "id">, "price">] = value;
       }
-
       return newData;
     });
   };
+
   const validateForm = () => {
     const newErrors: Partial<Omit<Product, "id">> = {};
     if (!formData.name) newErrors.name = "Name is required";
-    if (formData.price <= 0) newErrors.price = 0;
+    if (formData.price <= 0) newErrors.price = "Price must be greater than 0";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -58,8 +53,8 @@ export default function ProductForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="product-form">
-      <div className="form-group">
+    <form onSubmit={handleSubmit} className={styles.productForm}>
+      <div className={styles.formGroup}>
         <label htmlFor="name">Product Name</label>
         <input
           type="text"
@@ -69,10 +64,10 @@ export default function ProductForm({
           onChange={handleChange}
           disabled={isLoading}
         />
-        {errors.name && <span className="error">{errors.name}</span>}
+        {errors.name && <span className={styles.error}>{errors.name}</span>}
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="price">Price ($)</label>
         <input
           type="number"
@@ -84,10 +79,10 @@ export default function ProductForm({
           onChange={handleChange}
           disabled={isLoading}
         />
-        {errors.price && <span className="error">{errors.price}</span>}
+        {errors.price && <span className={styles.error}>{errors.price}</span>}
       </div>
 
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="description">Description</label>
         <textarea
           id="description"

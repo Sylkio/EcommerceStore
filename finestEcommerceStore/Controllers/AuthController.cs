@@ -34,6 +34,8 @@ namespace finestEcommerceStore.Controllers
             var user = new ApplicationUser
             {
                 UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

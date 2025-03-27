@@ -1,0 +1,41 @@
+.dashboardContainer {
+    padding: 2rem;
+  }
+  
+  .welcomeSection {
+    margin-bottom: 2rem;
+  }
+  
+  .summarySection {
+    margin-bottom: 2rem;
+  }
+  
+  .summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .summaryItem {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .quickActions {
+    margin-bottom: 2rem;
+  }
+  
+  .actionsGrid {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .actionButton {
+    padding: 1rem 2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

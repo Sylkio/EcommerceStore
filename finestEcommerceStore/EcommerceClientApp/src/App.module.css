@@ -1,119 +1,45 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-/* src/App.css */
-nav {
-  background: #f8f9fa;
-  padding: 1rem;
-  display: flex;
-  gap: 1rem;
-}
-/* src/App.css */
-.app-container {
+.appContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
-.app-nav {
-  background: #f8f9fa;
+.header {
+  background-color: #f0f0f0;
   padding: 1rem;
   display: flex;
-  gap: 1rem;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.2s;
-}
-
-.nav-link:hover {
-  background: #e9ecef;
-}
-
-.app-content {
-  flex: 1;
-  padding: 2rem;
-}
-nav a {
-  text-decoration: none;
-  color: #333;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  background: #e9ecef;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-.appContainer {
-  display: flex;
-  flex-direction: column; /* Stack nav and main content vertically */
-  min-height: 100vh; /* Ensure full viewport height */
-}
-
-.nav {
-  padding: 1rem;
-  background: #f3f3f3;
-  display: flex; /* Arrange links horizontally */
-  justify-content: flex-start; /* Align links to the start */
-  border-bottom: 1px solid #ddd; /* Add a subtle bottom border */
-}
-
-.navLink {
-  margin-right: 1rem;
-  text-decoration: none;
-  color: #333;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.navLink:hover {
-  color: #007bff; /* Change color on hover */
+.auth {
+  display: flex;
+  gap: 1rem;
+}
+
+.authLink {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.authLink:hover {
+  background-color: #e0e0e0;
+}
+
+.content {
+  display: flex;
+  flex: 1;
 }
 
 .mainContent {
-  flex-grow: 1; /* Allow main content to take up remaining space */
-  padding: 1rem;
+  flex: 1;
+  padding: 2rem;
 }

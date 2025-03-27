@@ -1,40 +1,44 @@
-// src/components/ProductList.tsx
-import { useEffect, useState } from "react";
-import { fetchProducts } from "../services/api";
-import { Product } from "../types/product";
+import React from "react";
+import styles from "./ProductListPage.module.css";
 
-export default function ProductList() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    fetchProducts().then(({ data }) => {
-      if (data) setProducts(data);
-    });
-  }, []);
-
+const ProductListPage: React.FC = () => {
   return (
-    <div style={{ padding: "1rem" }}>
-      <h2>Product List</h2>
-      {products.length === 0 ? (
-        <p>No products found</p>
-      ) : (
-        <div style={{ display: "grid", gap: "1rem" }}>
-          {products.map((product) => (
-            <div
-              key={product.id}
-              style={{
-                border: "1px solid #ddd",
-                padding: "1rem",
-                borderRadius: "4px",
-              }}
-            >
-              <h3>{product.name}</h3>
-              <p>${product.price.toFixed(2)}</p>
-              <p>{product.description}</p>
-            </div>
-          ))}
+    <div className={styles.dashboardContainer}>
+      <section className={styles.welcomeSection}>
+        <h1>Welcome to Admin Dashboard</h1>
+        <p>Manage your e-commerce store with ease.</p>
+      </section>
+
+      <section className={styles.summarySection}>
+        <h2>Summary</h2>
+        <div className={styles.summaryGrid}>
+          <div className={styles.summaryItem}>
+            <h3>Total Orders</h3>
+            <p>120</p>
+          </div>
+          <div className={styles.summaryItem}>
+            <h3>Total Products</h3>
+            <p>500</p>
+          </div>
+          <div className={styles.summaryItem}>
+            <h3>New Users</h3>
+            <p>30</p>
+          </div>
         </div>
-      )}
+      </section>
+
+      <section className={styles.quickActions}>
+        <h2>Quick Actions</h2>
+        <div className={styles.actionsGrid}>
+          <button className={styles.actionButton}>Add Product</button>
+          <button className={styles.actionButton}>Manage Categories</button>
+          <button className={styles.actionButton}>View Orders</button>
+        </div>
+      </section>
+
+      {/* Add more sections like recent orders, product lists, etc. */}
     </div>
   );
-}
+};
+
+export default ProductListPage;

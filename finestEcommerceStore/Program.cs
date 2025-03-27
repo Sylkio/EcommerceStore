@@ -1,7 +1,9 @@
 using System.Text;
 using finestEcommerceStore;
 using finestEcommerceStore.Data;
+using finestEcommerceStore.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -39,6 +41,11 @@ builder.Services.AddCors(options =>
     });
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite("Data Source=app.db"));
+
+// Register ASP.NET Core Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 builder.Services.AddAuthorization();
 
 var app = builder.Build();

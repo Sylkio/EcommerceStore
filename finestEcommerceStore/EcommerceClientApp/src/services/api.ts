@@ -65,6 +65,9 @@ async function del<T>(endpoint: string): Promise<ApiResponse<T>> {
   }
 }
 
+
+
+
 // Product-specific methods
 export const fetchProducts = () => get<Product[]>('/api/Product/GetProduct');
 export const getProductById = (id: number) => get<Product>(`/api/Product/findproductbyId?id=${id}`);
@@ -74,3 +77,50 @@ export const updateProduct = (id: number, product: Product) =>
   put<Product>(`/api/Product/UpdateProduct?id=${id}`, product);
 export const deleteProduct = (id: number) => 
   del<void>(`/api/Product/DeleteProduct?id=${id}`);
+
+
+//Register & Login
+
+export async function registerUser(userData: { username: string; password: string }) {
+  try {
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      return { data: null, error: errorData.message || "Registration failed." };
+    }
+
+    const data = await response.json();
+    return { data, error: null };
+  } catch (err) {
+    return { data: null, error: "Network error." };
+  }
+}
+
+export async function loginUser(userData: { username: string; password: string }) {
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      return { data: null, error: errorData.message || "Login failed." };
+    }
+
+    const data = await response.json();
+    return { data, error: null };
+  } catch (err) {
+    return { data: null, error: "Network error." };
+  }
+}

@@ -1,9 +1,9 @@
-// src/pages/CreateProductPage.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProduct } from "../services/api";
 import ProductForm from "../components/ProductForm";
 import { Product } from "../types/product";
+import styles from "./CreateProductPage.module.css"; // Import CSS module
 
 export default function CreateProductPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,7 @@ export default function CreateProductPage() {
         setApiError(error);
       } else if (createdProduct) {
         alert(`Product "${createdProduct.name}" created successfully!`);
-        navigate("/products"); // Redirect after success
+        navigate("/"); // Redirect to homepage after success
       }
     } catch (err) {
       setApiError("An unexpected error occurred");
@@ -31,10 +31,10 @@ export default function CreateProductPage() {
   };
 
   return (
-    <div className="create-product-page">
+    <div className={styles.createProductPage}>
       <h1>Create New Product</h1>
 
-      {apiError && <div className="alert error">{apiError}</div>}
+      {apiError && <div className={styles.error}>{apiError}</div>}
 
       <ProductForm onSubmit={handleSubmit} isLoading={isLoading} />
     </div>
